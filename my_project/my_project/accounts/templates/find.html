@@ -1,7 +1,3 @@
-
-
-{% load static %}
-{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +7,8 @@
 </head>
 
 <style>
-    /*상단 메뉴부분*/
-    body {
+     /*상단 메뉴부분*/
+     body {
             margin: 0px;
             background-color: #F1F1F1;
         }
@@ -57,7 +53,7 @@
         }
 
         /*로그인 부분*/
-        .login {
+        .find {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -65,32 +61,31 @@
             height: 600px;
         }
 
-        .login-part {
+        .find-part {
             display: flex;
             flex-direction: row;
             align-items: center;
             margin: 10px;
         }
 
-        .login-input {
+        .find-input {
             display: flex;
             flex-direction: column;
             align-items: end;
             margin-right: 30px;
         }
 
-        .login-btn {
+        .find-btn {
             background-color: #77A5FF;
-            width: 60px;
-            height: 60px;
             color: white;
             font-weight: bold;
             border-radius: 5px;
+            padding: 10px;
+            font-size: 15px;
+            margin-top: 20PX;
         }
 
-    a {
-        text-decoration: none;
-    }
+
 </style>
 <body>
     <div class="head-menu">
@@ -104,42 +99,42 @@
             <button class="btn" id="gotomypage">My page</button>
         </div>
     </div>
-    <form method="POST">
-    <div class="login">
-        <h2 style="color: #595959"><span style="color: #77A5FF;">서비스명</span> 로그인</h2>
-        {% csrf_token %}
-        <div class="login-part">
-            <div class="login-input">
-                <p style="font-weight: bold; color: #595959; margin-bottom: 0;">ID &nbsp<input type="text" name="id"></p>
-                <p style="font-weight: bold; color: #595959;">PW &nbsp<input type="password" name="passwd"></p>
-            </div>
-            <input type="submit" class="login-btn" value="Login" style="border:none"></input>
-        </div>
-    
-        <div style="width: 300px; height: 1px; background-color: #D9D9D9; margin-top: 30px; margin-bottom: 30px;"></div>
-        
 
-        <div style="margin-top: 20px;">
-            <button style="background-color: transparent; font-weight: bold; font-size: 15px; color: #595959;" href="{% url 'signup' %}">회원가입</button>
-            <button style="background-color: transparent; font-weight: bold; font-size: 15px; color: #595959;" href="">ID/PW 찾기</button>
+    <div class="find">
+        <h2 style="color: #595959"><span style="color: #77A5FF;">서비스명</span> ID / PW 찾기</h2>
+
+        <div class="find-part">
+            <div>
+                <h3 style="color: #595959; font-weight: bold;">아이디 찾기</h3>
+                <div class="find-input">
+                    <p style="font-weight: bold; color: #595959; margin-bottom: 0;">이름 &nbsp<input></p>
+                    <p style="font-weight: bold; color: #595959;">이메일 &nbsp<input type="password"></p>
+                    <button class="find-btn">아이디 찾기</button>
+                </div>
+            </div>
+
+            <div style="width: 1px; height: 200px; background-color: #D9D9D9; margin-right: 50px; margin-left: 50px;"></div>
+
+            <div>
+                <h3 style="color: #595959; font-weight: bold;">비밀번호 찾기</h3>
+                <div class="find-input">
+                    <p style="font-weight: bold; color: #595959; margin-bottom: 0;">이름 &nbsp<input></p>
+                    <p style="font-weight: bold; color: #595959;">ID &nbsp<input type="password"></p>
+                    <button class="find-btn">비밀번호 찾기</button>
+                </div>
+            </div>
+        
         </div>
-        <!-- 
-                    <a href="{% provider_login_url 'google' %}">
-            <i>구글로그인</i>
-          </a>
-          <a href="{% provider_login_url 'kakao' method='oauth2' %}">
-            <i>카카오톡 회원가입</i>
-          </a>
-        -->
+
+
     </div>
-    </form>
 </body>
 
 <script>
     const GotoMypage = document.getElementById("gotomypage");
 
     GotoMypage.addEventListener("click", function() {
-    window.location.href = "{% url 'posts:mypage' %}";
+    window.location.href = "mypage.html";
 });
 </script>
 </html>

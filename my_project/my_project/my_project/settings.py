@@ -55,7 +55,7 @@ INSTALLED_APPS = [
 ]
 
 # 커스텀한 User모델 적용 
-#AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 SITE_ID = 1
 

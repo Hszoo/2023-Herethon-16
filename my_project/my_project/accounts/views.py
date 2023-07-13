@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from django.contrib.auth.models import User
+from accounts.models import User
+#from django.contrib.auth.models import User
 
 # from .forms import PostBaseForm
 # Create your views here.
@@ -9,10 +10,12 @@ def signup(request) :
     if request.method == 'POST' :
         id = request.POST['id']
         pw = request.POST['passwd']
+        name = request.POST['name']
+        email = request.POST['email']
         # 회원가입 조건에 따라 if문 조건 수정하기 
         if id is not None and pw is not None :
-            new_user = User.objects.create_user(username=id, password=pw)
-            auth.login(request, new_user)
+            new_user = User.objects.create_user(username=id, password=pw, email=email, name=name)
+            User.auth.login(request, new_user)
             return render(request, 'main.html')
 
     return render(request, 'signup.html')
@@ -23,7 +26,7 @@ def login(request) :
         pw = request.POST['passwd']
         user = auth.authenticate(request, username=id, password=pw)
         if user is not None :
-            auth.login(request, user)
+            auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return render(request, 'main.html')
     return render(request, 'login.html')
 
@@ -37,7 +40,7 @@ def mypage(request) :
 def find_id(request) :
     return render(request, 'login.html')
 
-def find_id(request) :
+def find_pw(request) :
     return render(request, 'login.html')
 
 # 필요하면 post views 파일에 가져다 쓰기 
